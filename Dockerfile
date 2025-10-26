@@ -49,6 +49,13 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 
+# Copy bcrypt and other required modules
+COPY --from=builder /app/node_modules/bcrypt ./node_modules/bcrypt
+COPY --from=builder /app/node_modules/@types ./node_modules/@types
+
+# Copy script files
+COPY --from=builder /app/script ./script
+
 USER nextjs
 
 EXPOSE 3000

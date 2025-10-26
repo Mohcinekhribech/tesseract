@@ -4,6 +4,15 @@ const prisma = new PrismaClient()
 
 async function initializeApp() {
   try {
+    console.log("🚀 Starting app initialization...")
+    
+    // Wait a bit for database to be ready
+    await new Promise(resolve => setTimeout(resolve, 2000))
+    
+    // Test database connection first
+    await prisma.$connect()
+    console.log("✅ Database connected successfully")
+    
     // Create admin user if it doesn't exist
     const existingAdmin = await prisma.admin.findUnique({
       where: { email: "admin@tesseract.com" },
@@ -23,6 +32,8 @@ async function initializeApp() {
     }
   } catch (error) {
     console.error("❌ Error initializing app:", error)
+  } finally {
+    await prisma.$disconnect()
   }
 }
 

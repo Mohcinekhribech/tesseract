@@ -5,6 +5,7 @@ import { headers } from "next/headers"
 import "./globals.css"
 import Navbar from "@/components/navbar"
 import { Footer } from "react-day-picker"
+import "@/lib/initializeApp"
 
 const inter = Inter({ subsets: ["latin"] })
 

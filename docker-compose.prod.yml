@@ -27,8 +27,8 @@ services:
       dockerfile: Dockerfile
     container_name: tesseract-app
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:3000:3000"  # Only bind to localhost
+    expose:
+      - "3000"  # Only expose internally to nginx
     environment:
       - NODE_ENV=production
       - DATABASE_URL=postgresql://postgres:tesseract123@postgres:5432/tesseract
@@ -72,6 +72,21 @@ services:
         echo 'Database setup complete!'
       "
     restart: "no"
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: tesseract-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - app
+    networks:
+      - tesseract-network
 
 volumes:
   postgres_data:

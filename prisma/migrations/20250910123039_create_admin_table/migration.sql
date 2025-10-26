@@ -10,3 +10,6 @@ CREATE TABLE "public"."Admin" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Admin_email_key" ON "public"."Admin"("email");
+
+-- Insert default admin user
+INSERT INTO "public"."Admin" ("name", "email", "password") VALUES ('Admin tesseract', 'admin@tesseract.com', 'admintesseract123');

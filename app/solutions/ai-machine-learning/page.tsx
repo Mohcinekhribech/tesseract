@@ -1,0 +1,562 @@
+import Image from "next/image"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { CheckCircle, ArrowRight, Zap, BarChart3, RefreshCw, Globe, Layers, Users } from "lucide-react"
+
+export default function AIMLSolutionsPage() {
+  return (
+    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+      {/* Hero Section */}
+      <section className="relative py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-tesseract-600 to-tesseract-400 dark:from-tesseract-800 dark:to-tesseract-600">
+          <div className="absolute inset-0 opacity-20 dark:opacity-30 mix-blend-overlay">
+            <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <defs>
+                <pattern id="grid" width="8" height="8" patternUnits="userSpaceOnUse">
+                  <path d="M 8 0 L 0 0 0 8" fill="none" stroke="white" strokeWidth="0.5" />
+                </pattern>
+              </defs>
+              <rect width="100" height="100" fill="url(#grid)" />
+            </svg>
+          </div>
+        </div>
+
+        <div className="container relative mx-auto px-4 z-10">
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-6">
+            <Zap size={14} className="mr-2 text-yellow-400" />
+            <span>Transforming Business with AI & Machine Learning</span>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                Advanced <span className="text-yellow-400">AI & Machine Learning</span> Solutions for Business
+                Innovation
+              </h1>
+              <p className="text-xl text-white/80 mb-8">
+                Harness the power of artificial intelligence and machine learning to automate processes, gain insights
+                from your data, and create intelligent applications that drive innovation and growth
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="/contact">
+                  <Button variant="gold" className="px-6 py-3 rounded-full">
+                    Schedule a Consultation →
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            <div className="relative h-[400px] rounded-lg overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-all duration-300">
+              <Image
+                src="/ai-ml-solutions-hero.png"
+                alt="AI & Machine Learning Solutions"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-8 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="text-center p-4 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-300">
+              <div className="text-3xl font-bold text-tesseract-500 dark:text-tesseract-300 mb-1">500+</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">AI Models Deployed</div>
+            </div>
+            <div className="text-center p-4 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-300">
+              <div className="text-3xl font-bold text-tesseract-500 dark:text-tesseract-300 mb-1">85%</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Faster Data Processing</div>
+            </div>
+            <div className="text-center p-4 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-300">
+              <div className="text-3xl font-bold text-tesseract-500 dark:text-tesseract-300 mb-1">40%</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Decision Accuracy Improvement</div>
+            </div>
+            <div className="text-center p-4 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-300">
+              <div className="text-3xl font-bold text-tesseract-500 dark:text-tesseract-300 mb-1">200+</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Global AI Clients</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Overview Section */}
+      <section className="py-20 bg-white dark:bg-gray-900">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center px-3 py-1 rounded-full bg-tesseract-100 dark:bg-tesseract-900/40 text-tesseract-600 dark:text-tesseract-300 text-sm font-medium mb-6">
+                Our Approach
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-tesseract-300 mb-6 leading-tight">
+                Comprehensive AI & Machine Learning Solutions for Business Excellence
+              </h2>
+              <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                AI & Machine Learning transformation is more than just technology—it's about partnering with you to
+                develop actionable solutions that drive measurable business outcomes.
+              </p>
+              <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                Our comprehensive AI services help you navigate complex data challenges, from model development to
+                implementation and beyond. We work closely with your team to understand your unique challenges and
+                opportunities, and develop tailored solutions that deliver measurable results.
+              </p>
+              <div className="grid grid-cols-2 gap-6 mb-8">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-tesseract-100 dark:bg-tesseract-900/30 flex items-center justify-center mr-4">
+                    <BarChart3 className="w-5 h-5 text-tesseract-600 dark:text-tesseract-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Data-Driven</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      Insights that drive intelligent decisions
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-tesseract-100 dark:bg-tesseract-900/30 flex items-center justify-center mr-4">
+                    <RefreshCw className="w-5 h-5 text-tesseract-600 dark:text-tesseract-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Agile Process</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Adaptable to changing requirements</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-tesseract-100 dark:bg-tesseract-900/30 flex items-center justify-center mr-4">
+                    <Globe className="w-5 h-5 text-tesseract-600 dark:text-tesseract-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Global Expertise</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">AI industry knowledge</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-tesseract-100 dark:bg-tesseract-900/30 flex items-center justify-center mr-4">
+                    <Users className="w-5 h-5 text-tesseract-600 dark:text-tesseract-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Customer-Focused</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">AI experience expertise</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center">
+                <Layers className="w-6 h-6 text-tesseract-500 dark:text-tesseract-400 mr-2" />
+                Our AI & ML Services
+              </h3>
+              <ul className="space-y-4">
+                <li className="flex items-start group">
+                  <CheckCircle
+                    className="text-tesseract-500 dark:text-tesseract-400 mr-3 mt-1 flex-shrink-0 group-hover:text-yellow-500 dark:group-hover:text-yellow-300 transition-colors duration-300"
+                    size={20}
+                  />
+                  <div>
+                    <span className="text-gray-800 dark:text-gray-200 font-medium group-hover:text-tesseract-500 dark:group-hover:text-tesseract-300 transition-colors duration-300">
+                      Natural Language Processing
+                    </span>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      Extract insights from text data and enable human-like interactions
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start group">
+                  <CheckCircle
+                    className="text-tesseract-500 dark:text-tesseract-400 mr-3 mt-1 flex-shrink-0 group-hover:text-yellow-500 dark:group-hover:text-yellow-300 transition-colors duration-300"
+                    size={20}
+                  />
+                  <div>
+                    <span className="text-gray-800 dark:text-gray-200 font-medium group-hover:text-tesseract-500 dark:group-hover:text-tesseract-300 transition-colors duration-300">
+                      Predictive Analytics
+                    </span>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      Forecast trends and business outcomes with ML models
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start group">
+                  <CheckCircle
+                    className="text-tesseract-500 dark:text-tesseract-400 mr-3 mt-1 flex-shrink-0 group-hover:text-yellow-500 dark:group-hover:text-yellow-300 transition-colors duration-300"
+                    size={20}
+                  />
+                  <div>
+                    <span className="text-gray-800 dark:text-gray-200 font-medium group-hover:text-tesseract-500 dark:group-hover:text-tesseract-300 transition-colors duration-300">
+                      Computer Vision
+                    </span>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      Automate visual inspection and analysis tasks
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start group">
+                  <CheckCircle
+                    className="text-tesseract-500 dark:text-tesseract-400 mr-3 mt-1 flex-shrink-0 group-hover:text-yellow-500 dark:group-hover:text-yellow-300 transition-colors duration-300"
+                    size={20}
+                  />
+                  <div>
+                    <span className="text-gray-800 dark:text-gray-200 font-medium group-hover:text-tesseract-500 dark:group-hover:text-tesseract-300 transition-colors duration-300">
+                      Intelligent Automation
+                    </span>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      Combine AI with RPA for end-to-end automation
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start group">
+                  <CheckCircle
+                    className="text-tesseract-500 dark:text-tesseract-400 mr-3 mt-1 flex-shrink-0 group-hover:text-yellow-500 dark:group-hover:text-yellow-300 transition-colors duration-300"
+                    size={20}
+                  />
+                  <div>
+                    <span className="text-gray-800 dark:text-gray-200 font-medium group-hover:text-tesseract-500 dark:group-hover:text-tesseract-300 transition-colors duration-300">
+                      Recommendation Systems
+                    </span>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      Deliver personalized experiences with AI engines
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start group">
+                  <CheckCircle
+                    className="text-tesseract-500 dark:text-tesseract-400 mr-3 mt-1 flex-shrink-0 group-hover:text-yellow-500 dark:group-hover:text-yellow-300 transition-colors duration-300"
+                    size={20}
+                  />
+                  <div>
+                    <span className="text-gray-800 dark:text-gray-200 font-medium group-hover:text-tesseract-500 dark:group-hover:text-tesseract-300 transition-colors duration-300">
+                      Machine Learning Operations
+                    </span>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      Deploy and manage ML models at scale
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start group">
+                  <CheckCircle
+                    className="text-tesseract-500 dark:text-tesseract-400 mr-3 mt-1 flex-shrink-0 group-hover:text-yellow-500 dark:group-hover:text-yellow-300 transition-colors duration-300"
+                    size={20}
+                  />
+                  <div>
+                    <span className="text-gray-800 dark:text-gray-200 font-medium group-hover:text-tesseract-500 dark:group-hover:text-tesseract-300 transition-colors duration-300">
+                      AI Strategy & Implementation
+                    </span>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      Ensure successful AI adoption and user engagement
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Approach Section */}
+      <section className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5 dark:opacity-10">
+          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
+                <circle cx="10" cy="10" r="1" fill="currentColor" className="text-tesseract-500" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#dots)" />
+          </svg>
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-tesseract-100 dark:bg-tesseract-900/40 text-tesseract-600 dark:text-tesseract-300 text-sm font-medium mb-4">
+              Our Methodology
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Our AI & Machine Learning Approach
+            </h2>
+            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              A structured methodology to ensure successful AI transformation with measurable outcomes
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg border border-gray-100 dark:border-gray-600 hover:shadow-xl hover:translate-y-[-5px] transition-all duration-300">
+              <div className="w-14 h-14 bg-tesseract-100 dark:bg-tesseract-900/30 rounded-full flex items-center justify-center mb-6 text-tesseract-600 dark:text-tesseract-300">
+                <span className="text-xl font-bold">01</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Assessment</h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                We work with you to assess your current data systems, identify AI opportunities, and uncover potential
+                for intelligent automation.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <CheckCircle
+                    className="text-tesseract-500 dark:text-tesseract-400 mr-2 mt-1 flex-shrink-0"
+                    size={16}
+                  />
+                  <span className="text-gray-600 dark:text-gray-300 text-sm">Data readiness analysis</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle
+                    className="text-tesseract-500 dark:text-tesseract-400 mr-2 mt-1 flex-shrink-0"
+                    size={16}
+                  />
+                  <span className="text-gray-600 dark:text-gray-300 text-sm">AI use case identification</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle
+                    className="text-tesseract-500 dark:text-tesseract-400 mr-2 mt-1 flex-shrink-0"
+                    size={16}
+                  />
+                  <span className="text-gray-600 dark:text-gray-300 text-sm">ROI opportunity assessment</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg border border-gray-100 dark:border-gray-600 hover:shadow-xl hover:translate-y-[-5px] transition-all duration-300">
+              <div className="w-14 h-14 bg-tesseract-100 dark:bg-tesseract-900/30 rounded-full flex items-center justify-center mb-6 text-tesseract-600 dark:text-tesseract-300">
+                <span className="text-xl font-bold">02</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Strategy Development</h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                We collaborate with your team to develop a tailored AI strategy that aligns with your business
+                objectives and addresses your unique challenges.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <CheckCircle
+                    className="text-tesseract-500 dark:text-tesseract-400 mr-2 mt-1 flex-shrink-0"
+                    size={16}
+                  />
+                  <span className="text-gray-600 dark:text-gray-300 text-sm">AI roadmap planning</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle
+                    className="text-tesseract-500 dark:text-tesseract-400 mr-2 mt-1 flex-shrink-0"
+                    size={16}
+                  />
+                  <span className="text-gray-600 dark:text-gray-300 text-sm">Model architecture design</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle
+                    className="text-tesseract-500 dark:text-tesseract-400 mr-2 mt-1 flex-shrink-0"
+                    size={16}
+                  />
+                  <span className="text-gray-600 dark:text-gray-300 text-sm">Implementation planning</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg border border-gray-100 dark:border-gray-600 hover:shadow-xl hover:translate-y-[-5px] transition-all duration-300">
+              <div className="w-14 h-14 bg-tesseract-100 dark:bg-tesseract-900/30 rounded-full flex items-center justify-center mb-6 text-tesseract-600 dark:text-tesseract-300">
+                <span className="text-xl font-bold">03</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                Implementation & Optimization
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                We support you throughout the implementation process, providing guidance, monitoring performance, and
+                making adjustments as needed.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <CheckCircle
+                    className="text-tesseract-500 dark:text-tesseract-400 mr-2 mt-1 flex-shrink-0"
+                    size={16}
+                  />
+                  <span className="text-gray-600 dark:text-gray-300 text-sm">Model deployment</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle
+                    className="text-tesseract-500 dark:text-tesseract-400 mr-2 mt-1 flex-shrink-0"
+                    size={16}
+                  />
+                  <span className="text-gray-600 dark:text-gray-300 text-sm">Performance monitoring</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle
+                    className="text-tesseract-500 dark:text-tesseract-400 mr-2 mt-1 flex-shrink-0"
+                    size={16}
+                  />
+                  <span className="text-gray-600 dark:text-gray-300 text-sm">Continuous optimization</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Success Stories Section */}
+      <section className="py-20 bg-white dark:bg-gray-900">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-tesseract-100 dark:bg-tesseract-900/40 text-tesseract-600 dark:text-tesseract-300 text-sm font-medium mb-4">
+              Success Stories
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              AI & Machine Learning Success Stories
+            </h2>
+            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              See how our AI & Machine Learning solutions have helped organizations achieve their business goals
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:translate-y-[-5px] transition-all duration-300 group">
+              <div className="bg-tesseract-100 dark:bg-tesseract-900/30 text-tesseract-600 dark:text-tesseract-400 w-12 h-12 rounded-full flex items-center justify-center mb-6 group-hover:bg-tesseract-500 group-hover:text-white dark:group-hover:bg-tesseract-500 transition-all duration-300">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-tesseract-500 dark:group-hover:text-tesseract-300 transition-colors duration-300">
+                Manufacturing AI Platform
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                Implemented predictive maintenance AI that reduced equipment downtime by 35% and maintenance costs by
+                25% for a global manufacturer.
+              </p>
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-gray-500 dark:text-gray-400">ROI: 320%</span>
+                <span className="text-gray-500 dark:text-gray-400">Timeline: 4 months</span>
+              </div>
+              <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                <Link
+                  href="/case-studies/ai-predictive-maintenance"
+                  className="inline-flex items-center text-tesseract-600 hover:text-tesseract-700 dark:text-tesseract-400 dark:hover:text-tesseract-300 font-medium group-hover:translate-x-1 transition-transform duration-300"
+                >
+                  Read case study <ArrowRight size={16} className="ml-2" />
+                </Link>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:translate-y-[-5px] transition-all duration-300 group">
+              <div className="bg-tesseract-100 dark:bg-tesseract-900/30 text-tesseract-600 dark:text-tesseract-400 w-12 h-12 rounded-full flex items-center justify-center mb-6 group-hover:bg-tesseract-500 group-hover:text-white dark:group-hover:bg-tesseract-500 transition-all duration-300">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-tesseract-500 dark:group-hover:text-tesseract-300 transition-colors duration-300">
+                Customer Analytics AI
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                Developed customer analytics platform that increased retention by 22% and average order value by 15% for
+                a retail chain.
+              </p>
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-gray-500 dark:text-gray-400">ROI: 280%</span>
+                <span className="text-gray-500 dark:text-gray-400">Timeline: 5 months</span>
+              </div>
+              <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                <Link
+                  href="/case-studies/ai-customer-analytics"
+                  className="inline-flex items-center text-tesseract-600 hover:text-tesseract-700 dark:text-tesseract-400 dark:hover:text-tesseract-300 font-medium group-hover:translate-x-1 transition-transform duration-300"
+                >
+                  Read case study <ArrowRight size={16} className="ml-2" />
+                </Link>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:translate-y-[-5px] transition-all duration-300 group">
+              <div className="bg-tesseract-100 dark:bg-tesseract-900/30 text-tesseract-600 dark:text-tesseract-400 w-12 h-12 rounded-full flex items-center justify-center mb-6 group-hover:bg-tesseract-500 group-hover:text-white dark:group-hover:bg-tesseract-500 transition-all duration-300">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-tesseract-500 dark:group-hover:text-tesseract-300 transition-colors duration-300">
+                Fraud Detection AI
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                Implemented advanced fraud detection system that reduced fraudulent transactions by 60% and saved over
+                $2M annually for a financial services company.
+              </p>
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-gray-500 dark:text-gray-400">ROI: 350%</span>
+                <span className="text-gray-500 dark:text-gray-400">Timeline: 3 months</span>
+              </div>
+              <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                <Link
+                  href="/case-studies/ai-fraud-detection"
+                  className="inline-flex items-center text-tesseract-600 hover:text-tesseract-700 dark:text-tesseract-400 dark:hover:text-tesseract-300 font-medium group-hover:translate-x-1 transition-transform duration-300"
+                >
+                  Read case study <ArrowRight size={16} className="ml-2" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section with Gradient Background */}
+      <section className="py-20 relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-tesseract-600 to-tesseract-400 dark:from-tesseract-800 dark:to-tesseract-600"></div>
+        <div className="absolute inset-0 opacity-10 mix-blend-overlay">
+          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <pattern id="grid-cta" width="8" height="8" patternUnits="userSpaceOnUse">
+                <path d="M 8 0 L 0 0 0 8" fill="none" stroke="white" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100" height="100" fill="url(#grid-cta)" />
+          </svg>
+        </div>
+        <div className="container mx-auto px-4 relative z-10 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Ready to Transform Your Business with AI & Machine Learning?
+          </h2>
+          <p className="text-xl text-white/80 max-w-2xl mx-auto mb-10">
+            Contact us today to discuss how our AI & Machine Learning solutions can help you achieve your business
+            goals.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/contact">
+              <Button className="bg-white text-tesseract-600 hover:bg-gray-100 dark:bg-yellow-300 dark:text-gray-900 dark:hover:bg-yellow-200 font-medium px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-lg">
+                Schedule a Consultation
+              </Button>
+            </Link>
+            <Link href="/services">
+              <Button
+                variant="outline"
+                className="bg-transparent border-white text-white hover:bg-white/10 font-medium px-8 py-3 rounded-lg transition-all duration-300 text-lg"
+              >
+                Explore All Services
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}

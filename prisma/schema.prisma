@@ -1,0 +1,68 @@
+
+datasource db {
+  provider = "postgresql" 
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Testimonial {
+  id        Int      @id @default(autoincrement())
+  fullname  String
+  function  String
+  rate      Int
+  comments  String
+  createdAt DateTime @default(now())
+}
+
+model Profile {
+  id        Int      @id @default(autoincrement())
+  fullName  String
+  aboutMe   String   @db.Text
+   role  String? 
+   imageUrl  String? 
+     available Boolean     @default(true)  
+  stars     Int         @default(0)  
+  education Education[]
+  experience Experience[]
+  portfolio Portfolio[]
+  createdAt DateTime @default(now())
+}
+
+model Education {
+  id        Int      @id @default(autoincrement())
+  school    String
+  degree    String
+  year      Int
+  profile   Profile  @relation(fields: [profileId], references: [id])
+  profileId Int
+}
+
+model Experience {
+  id          Int      @id @default(autoincrement())
+  title       String
+  company     String
+  startYear   Int
+  endYear     Int?
+  description String   @db.Text
+  profile     Profile  @relation(fields: [profileId], references: [id])
+  profileId   Int
+}
+
+model Portfolio {
+  id        Int      @id @default(autoincrement())
+  title     String
+  client    String?
+  imageUrl  String
+  techStack String?
+  profile   Profile  @relation(fields: [profileId], references: [id])
+  profileId Int
+}
+model Admin {
+  id       Int     @id @default(autoincrement())
+  name     String
+  email    String  @unique
+  password String
+}

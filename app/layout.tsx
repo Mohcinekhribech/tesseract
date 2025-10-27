@@ -5,6 +5,7 @@ import { headers } from "next/headers"
 import "./globals.css"
 import Navbar from "@/components/navbar"
 import { Footer } from "react-day-picker"
+import Providers from "@/components/providers"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -27,7 +28,9 @@ export default async function RootLayout({
     return (
       <html lang="en" className="dark" suppressHydrationWarning>
         <body className={`${inter.className} bg-gray-900 text-gray-100 min-h-screen`}>
-          {children}
+          <Providers>
+            {children}
+          </Providers>
         </body>
       </html>
     )
@@ -36,11 +39,13 @@ export default async function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`${inter.className} bg-gray-900 text-gray-100 min-h-screen flex flex-col`}>
-        <Navbar />
-        <main className="pt-20 flex-grow">
-          {children}
-        </main>
-        <Footer />
+        <Providers>
+          <Navbar />
+          <main className="pt-20 flex-grow">
+            {children}
+          </main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   )

@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import TestimonialModal from "@/components/TestimonialModal";
 import { useTestimonials } from "@/hooks/use-testimonial";
 import { Testimonial } from "@/types/testimonial";
+import { useSession } from 'next-auth/react';
 
 
 export default function Home() {
@@ -25,6 +26,8 @@ export default function Home() {
   const [isDeleting, setIsDeleting] = useState<number | null>(null);
 
   const { testimonials, isLoading, error, deleteTestimonial, refreshTestimonials } = useTestimonials();
+  const { data: session } = useSession();
+  const isAdmin = session?.user;
 
   useEffect(() => {
     if (testimonials.length > 0 && currentSlide >= testimonials.length) {
@@ -106,28 +109,32 @@ export default function Home() {
       <div key={testimonial.id} className="group relative max-w-4xl mx-auto">
         <div className={`bg-gray-900 bg-gradient-to-br from-${colorScheme.from} to-${colorScheme.to} backdrop-blur-sm border border-${colorScheme.border} rounded-2xl p-8 h-full transition-all duration-300 hover:scale-105 hover:border-${colorScheme.hover} hover:shadow-2xl hover:shadow-${colorScheme.shadow}`}>
           <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex gap-2">
-            <Button
-              size="sm"
-              variant="outline"
-              className={`bg-${colorScheme.from} border-${colorScheme.hover} text-${colorScheme.text} hover:bg-${colorScheme.border} hover:text-white`}
-              onClick={() => handleEditTestimonial(testimonial)}
-              disabled={isDeleting !== null}
-            >
-              <Edit className="h-4 w-4" />
-            </Button>
-            <Button
-              size="sm"
-              variant="outline"
-              className="bg-red-600/20 border-red-400/40 text-red-300 hover:bg-red-600/40 hover:text-white"
-              onClick={() => handleDeleteTestimonial(testimonial.id)}
-              disabled={isDeleting !== null}
-            >
-              {isDeleting === testimonial.id ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                <Trash2 className="h-4 w-4" />
-              )}
-            </Button>
+            {isAdmin && (
+              <>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className={`bg-${colorScheme.from} border-${colorScheme.hover} text-${colorScheme.text} hover:bg-${colorScheme.border} hover:text-white`}
+                  onClick={() => handleEditTestimonial(testimonial)}
+                  disabled={isDeleting !== null}
+                >
+                  <Edit className="h-4 w-4" />
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="bg-red-600/20 border-red-400/40 text-red-300 hover:bg-red-600/40 hover:text-white"
+                  onClick={() => handleDeleteTestimonial(testimonial.id)}
+                  disabled={isDeleting !== null}
+                >
+                  {isDeleting === testimonial.id ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Trash2 className="h-4 w-4" />
+                  )}
+                </Button>
+              </>
+            )}
           </div>
 
           <div className="flex items-center mb-6">
@@ -380,14 +387,16 @@ export default function Home() {
 
           {/* Add Testimonial Button */}
           <div className="text-center mb-8 relative z-20">
-            <Button
-              onClick={handleCreateTestimonial}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0"
-              disabled={isLoading}
-            >
-              <Plus className="mr-2 h-5 w-5" />
-              Ajouter un témoignage
-            </Button>
+            {isAdmin && (
+              <Button
+                onClick={handleCreateTestimonial}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0"
+                disabled={isLoading}
+              >
+                <Plus className="mr-2 h-5 w-5" />
+                Ajouter un témoignage
+              </Button>
+            )}
           </div>
 
           {/* Modern Testimonial Display */}
@@ -410,13 +419,6 @@ export default function Home() {
             ) : testimonials.length === 0 ? (
               <div className="text-center py-20">
                 <p className="text-gray-400 mb-4">Aucun témoignage disponible</p>
-                <Button
-                  onClick={handleCreateTestimonial}
-                  className="bg-blue-600 hover:bg-blue-700 text-white"
-                >
-                  <Plus className="mr-2 h-5 w-5" />
-                  Ajouter le premier témoignage
-                </Button>
               </div>
             ) : (
               <div className="py-8">

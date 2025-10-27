@@ -1,5 +1,9 @@
 import type { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
+import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcrypt'
+
+const prisma = new PrismaClient()
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -11,20 +15,40 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         console.log("Credentials reçues :", credentials) 
-        const adminEmail = process.env.ADMIN_EMAIL
-        const adminPassword = process.env.ADMIN_PASSWORD
-
-        if (
-          credentials?.email === adminEmail &&
-          credentials?.password === adminPassword
-        ) {
-          return {
-            name: "Admin",
-            email: adminEmail,
-          } as any
+        
+        if (!credentials?.email || !credentials?.password) {
+          return null
         }
 
-        return null
+        try {
+          // Find admin by email in database
+          const admin = await prisma.admin.findUnique({
+            where: { email: credentials.email }
+          })
+
+          if (!admin) {
+            console.log("Admin not found")
+            return null
+          }
+
+          // Verify password with bcrypt
+          const isValidPassword = await bcrypt.compare(credentials.password, admin.password)
+          
+          if (isValidPassword) {
+            return {
+              id: admin.id.toString(),
+              name: admin.name,
+              email: admin.email,
+              role: 'admin'
+            } as any
+          }
+
+          console.log("Invalid password")
+          return null
+        } catch (error) {
+          console.error("Authentication error:", error)
+          return null
+        }
       },
     }),
   ],

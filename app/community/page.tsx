@@ -9,6 +9,7 @@ import AdvancedFiltersModal from '@/components/AdvancedFiltersModal';
 import CreateProfileModal from '@/components/CreateProfileModal';
 import EditProfileModal from '@/components/EditProfileModal';
 import DeleteConfirmationModal from '@/components/DeleteConfirmationModal';
+import { useSession } from 'next-auth/react';
 
 export default function CommunityPage() {
   const [profiles, setProfiles] = useState<ProfileData[]>([]);
@@ -28,6 +29,9 @@ export default function CommunityPage() {
   const [editingProfile, setEditingProfile] = useState<ProfileData | null>(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [deletingProfile, setDeletingProfile] = useState<ProfileData | null>(null);
+
+  const { data: session } = useSession();
+  const isAdmin = session?.user;
 
   const fetchProfiles = async (search?: string) => {
     try {
@@ -261,14 +265,16 @@ export default function CommunityPage() {
                 </button>
               </div>
 
-              <button
-                onClick={() => setIsCreateModalOpen(true)}
-                className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-              >
-                <Plus size={18} />
-                <span>Create Profile</span>
-                <Sparkles size={16} className="text-yellow-300" />
-                      </button>
+              {isAdmin && (
+                <button
+                  onClick={() => setIsCreateModalOpen(true)}
+                  className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                >
+                  <Plus size={18} />
+                  <span>Create Profile</span>
+                  <Sparkles size={16} className="text-yellow-300" />
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -422,18 +428,22 @@ export default function CommunityPage() {
             <span className="text-xs font-medium">{profile.available ? "Available" : "Busy"}</span>
           </div>
           <div className="absolute top-4 left-4 flex gap-2">
-            <button
-              onClick={() => openEditModal(profile)}
-              className="p-2 bg-gray-700/80 hover:bg-blue-600 rounded-full transition"
-            >
-              <Edit size={16} />
-            </button>
-            <button
-              onClick={() => openDeleteModal(profile)}
-              className="p-2 bg-gray-700/80 hover:bg-red-600 rounded-full transition"
-            >
-              <Trash2 size={16} />
-            </button>
+            {isAdmin && (
+              <>
+                <button
+                  onClick={() => openEditModal(profile)}
+                  className="p-2 bg-gray-700/80 hover:bg-blue-600 rounded-full transition"
+                >
+                  <Edit size={16} />
+                </button>
+                <button
+                  onClick={() => openDeleteModal(profile)}
+                  className="p-2 bg-gray-700/80 hover:bg-red-600 rounded-full transition"
+                >
+                  <Trash2 size={16} />
+                </button>
+              </>
+            )}
           </div>
         </div>
         <div className="p-6">

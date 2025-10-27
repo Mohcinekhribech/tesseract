@@ -1,0 +1,122 @@
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: tesseract-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: tesseract
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: tesseract123
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - tesseract-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d tesseract"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Next.js Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.clean
+    container_name: tesseract-app
+    restart: unless-stopped
+    expose:
+      - "3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://postgres:tesseract123@postgres:5432/tesseract
+      - NEXTAUTH_SECRET=tesseract-super-secret-key-change-in-production
+      - NEXTAUTH_URL=http://87.106.10.121
+      - RESEND_API_KEY=re_placeholder_key_for_build
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - tesseract-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Database Setup Service
+  db-setup:
+    build:
+      context: .
+      dockerfile: Dockerfile.clean
+    container_name: tesseract-db-setup
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://postgres:tesseract123@postgres:5432/tesseract
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - tesseract-network
+    command: >
+      sh -c "
+        echo 'Waiting for database to be ready...' &&
+        sleep 10 &&
+        echo 'Running database migrations...' &&
+        npx prisma migrate deploy &&
+        echo 'Creating admin user...' &&
+        node -e \"
+        const { PrismaClient } = require('@prisma/client');
+        const prisma = new PrismaClient();
+        async function main() {
+          try {
+            const existingAdmin = await prisma.admin.findUnique({
+              where: { email: 'admin@tesseract.com' },
+            });
+            if (existingAdmin) {
+              console.log('Admin already exists:', existingAdmin.email);
+            } else {
+              const admin = await prisma.admin.create({
+                data: {
+                  name: 'Admin tesseract',
+                  email: 'admin@tesseract.com',
+                  password: 'admintesseract123',
+                },
+              });
+              console.log('Admin created successfully:', admin.email);
+            }
+          } catch (error) {
+            console.error('Error creating admin:', error);
+          }
+        }
+        main().finally(() => prisma.\$disconnect());
+        \" &&
+        echo 'Database setup complete!'
+      "
+    restart: "no"
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: tesseract-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      app:
+        condition: service_healthy
+    networks:
+      - tesseract-network
+
+volumes:
+  postgres_data:
+
+networks:
+  tesseract-network:
+    driver: bridge
